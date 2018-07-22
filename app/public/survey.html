@@ -187,7 +187,6 @@
                 </div>
             </section>
         </section>
-        <!-- Modal -->
         <div class="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -214,28 +213,28 @@
         
     </div>
     <script type="text/javascript">
-        // Listener for submit button click
-        $('#submit').on('click', function (event) {
-            // prevents the default submit button action
+       
+        $('#submit').on('click', (event) => {
+            
             event.preventDefault();
-            // Set local variables
-            var matchStatus = $('.modal-title');
-            var modalBody = $('.modal-body');
-            // set responses to local variables
-            var name = $('#name').val().trim();
-            var photo = $('#photo').val();
-            var question1 = parseInt($('#question-1').val());
-            var question2 = parseInt($('#question-2').val());
-            var question3 = parseInt($('#question-3').val());
-            var question4 = parseInt($('#question-4').val());
-            var question5 = parseInt($('#question-5').val());
-            var question6 = parseInt($('#question-6').val());
-            var question7 = parseInt($('#question-7').val());
-            var question8 = parseInt($('#question-8').val());
-            var question9 = parseInt($('#question-9').val());
-            var question10 = parseInt($('#question-10').val());
-            // Set data to be sent to server
-            var userData = {
+            
+            const matchStatus = $('.modal-title');
+            const modalBody = $('.modal-body');
+            
+            const name = $('#name').val().trim();
+            const photo = $('#photo').val();
+            const question1 = parseInt($('#question-1').val());
+            const question2 = parseInt($('#question-2').val());
+            const question3 = parseInt($('#question-3').val());
+            const question4 = parseInt($('#question-4').val());
+            const question5 = parseInt($('#question-5').val());
+            const question6 = parseInt($('#question-6').val());
+            const question7 = parseInt($('#question-7').val());
+            const question8 = parseInt($('#question-8').val());
+            const question9 = parseInt($('#question-9').val());
+            const question10 = parseInt($('#question-10').val());
+            
+            const userData = {
                 name: name,
                 photo: photo,
                 scores: [
@@ -251,7 +250,7 @@
                     question10
                 ]
             };
-            // Form Validation
+            
             if (
                 (name !== '') && (photo !== '') && (!isNaN(question1)) &&
                 (!isNaN(question2)) && (!isNaN(question3)) && (!isNaN(question4)) &&
@@ -259,26 +258,26 @@
                 (!isNaN(question8)) && (!isNaN(question9)) && (!isNaN(question10))
             ) {
                
-                var currentURL = window.location.origin;
-                // AJAX post the data to the friends API. 
-                $.post(currentURL + "/api/friends", userData, function (data) {
-                    // If the data has a match, then show this
+                const currentURL = window.location.origin;
+                 
+                $.post(currentURL + "/api/friends", userData, (data) => {
+                    
                     if (data.name !== undefined) {
                         matchStatus.html('Your match is:');
                         modalBody.html(data.name + '!</p><img src="' + data.photo + '" height="200">');
                     } else {
-                        // If no match, show this
+                        
                         matchStatus.html('Not enough data!');
                         modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
                     }
-                    // Toggle modal on
+                   
                     $('.modal').modal('toggle');
                 });
             } else {
-                // If the form was not valid, this error is shown
+                
                 matchStatus.html('Error...');
                 modalBody.html('Please answer all questions on the form.');
-                // Toggle modal on
+                
                 $('.modal').modal('toggle');
             }
         });
