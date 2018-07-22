@@ -1,47 +1,45 @@
-var friends = require("../data/friends");
-
+var friends = require('../data/friends.js');
 
 
 module.exports = function(app) {
-  app.get("/api/friends", (req, res) => {
-    res.json(friends);
-  });
-
-  app.post("/api/friends", (req, res) => {
-    
-    var bestMatch = {
-      name: "",
-      photo: "",
-      friendDifference: Infinity
-    };
-
-    var userData = req.body;
-    var userScores = userData.scores;
-    var totalDifference;
-
-    for (var i = 0; i < friends.length; i++) {
-        var currentFriend = friends[i];
-      totalDifference = 0;
-
-      console.log(currentFriend.name);
-
-      for (var j = 0; j < currentFriend.scores.length; j++) {
-        var currentFriendScore = currentFriend.scores[j];
-        var currentUserScore = userScores[j];
 
     
-        totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
-      }
+    app.get('/api/friends', function(req, res) {
+        res.json(friends);
+    });
 
-  
-      if (totalDifference <= bestMatch.friendDifference) {
-        bestMatch.name = currentFriend.name;
-        bestMatch.photo = currentFriend.photo;
-        bestMatch.friendDifference = totalDifference;
-      }
-    }
+    app.post('/api/friends', function(req, res) {
+        var difference = 40;
+        var matchName = '';
+        var matchPhoto = '';
 
-    friends.push(userData);
-    res.json(bestMatch);
-  });
-};
+       
+        friends.forEach(function(friend) {
+            var matchedScoresArray = [];
+            var totalDifference = 40;
+
+            function add(total, num) {
+                return total + num;
+            }
+            for (var i = 0; i < friend.scores.length; i++) {
+                matchedScoresArray.push(Math.abs(parseInt(req.body.scores[i]) - parseInt(friend.scores[i])));
+
+            }
+
+            totalDifference = matchedScoresArray.reduce(add, 0);
+
+            if (totalDifference < difference) {
+                difference = totalDifference;
+                matchName = friend.name;
+                matchPhoto = friend.photo;
+            }
+        });
+
+        res.json({
+            name: matchName,
+            photo: matchPhoto
+        });
+
+        friends.push(req.body);
+    });
+}
