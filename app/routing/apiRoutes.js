@@ -21,7 +21,7 @@ module.exports = function(app) {
             function add(total, num) {
                 return total + num;
             }
-            for (var i = 0; i < friend.scores.length; i++) {
+            for (var i = 0; i < friends.scores.length; i++) {
                 matchedScoresArray.push(Math.abs(parseInt(req.body.scores[i]) - parseInt(friend.scores[i])));
 
             }
