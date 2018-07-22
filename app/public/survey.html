@@ -546,14 +546,14 @@
                         modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
                     }
                     // Toggle modal on
-                    $('.modal').modal('toggle');
+                    $('.modal').show();
                 });
             } else {
                     // If the form was not valid, this error is shown
                 matchStatus.html('Error...');
                 modalBody.html('Please answer all questions on the form.');
                 // Toggle modal on
-                $('.modal').modal('toggle');
+                $('.modal').modal('');
             }
         });
         $('#friend-form').reset();
