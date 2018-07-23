@@ -33,7 +33,7 @@ module.exports = function(app) {
                 totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(matchedFriendScore));
             }
 
-                if(TotalDifference <= userMatch.difference) {
+                if(totalDifference <= userMatch.difference) {
                     userMatch.name = matchedFriend.name;
                     userMatch.photo = matchedFriend.photo;
                     userMatch.friendDifference = totalDifference
