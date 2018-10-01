@@ -220,23 +220,23 @@
 
             event.preventDefault();
 
-            var matchStatus = $('.modal-title');
-            var modalBody = $('.modal-body');
+            const matchStatus = $('.modal-title');
+            const modalBody = $('.modal-body');
 
-            var name = $('#name').val().trim();
-            var photo = $('#photo').val();
-            var question1 = parseInt($('#question-1').val());
-            var question2 = parseInt($('#question-2').val());
-            var question3 = parseInt($('#question-3').val());
-            var question4 = parseInt($('#question-4').val());
-            var question5 = parseInt($('#question-5').val());
-            var question6 = parseInt($('#question-6').val());
-            var question7 = parseInt($('#question-7').val());
-            var question8 = parseInt($('#question-8').val());
-            var question9 = parseInt($('#question-9').val());
-            var question10 = parseInt($('#question-10').val());
+            const name = $('#name').val().trim();
+            const photo = $('#photo').val();
+            const question1 = parseInt($('#question-1').val());
+            const question2 = parseInt($('#question-2').val());
+            const question3 = parseInt($('#question-3').val());
+            const question4 = parseInt($('#question-4').val());
+            const question5 = parseInt($('#question-5').val());
+            const question6 = parseInt($('#question-6').val());
+            const question7 = parseInt($('#question-7').val());
+            const question8 = parseInt($('#question-8').val());
+            const question9 = parseInt($('#question-9').val());
+            const question10 = parseInt($('#question-10').val());
 
-            var userData = {
+            const userData = {
                 name: name,
                 photo: photo,
                 scores: [
@@ -260,7 +260,7 @@
                 (!isNaN(question8)) && (!isNaN(question9)) && (!isNaN(question10))
             ) {
 
-                var currentURL = window.location.origin;
+                const currentURL = window.location.origin;
 
                 $.post(currentURL + "/api/friends", userData, (data) => {
 
