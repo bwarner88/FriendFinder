@@ -9,6 +9,7 @@
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     <title>Personal Survey</title>
 </head>
 
@@ -19,12 +20,16 @@
         <h3>
             <strong>About You</strong>
         </h3>
-        <p>First a little about you!</p>
+        <p>Tell us about yourself!</p>
+
         <h4>Name</h4>
+        
         <input type="text" name="" id="name" class="form-control" required>
+        
         <h4>Insert a Photo of Yourself</h4>
+        
         <input type="text" name="" id="photo" class="form-control" required>
-        <hr>
+        
         <section id="friend-form">
             <section class="form-group">
                 <h3>Question 1</h3>
@@ -42,6 +47,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 2</h3>
                 <label for="item2" class="control-label">
@@ -58,6 +64,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 3</h3>
                 <label for="item3" class="control-label">
@@ -74,6 +81,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 4</h3>
                 <label for="item4" class="control-label">
@@ -90,6 +98,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 5</h3>
                 <label for="item5" class="control-label">
@@ -106,6 +115,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 6</h3>
                 <label for="item6" class="control-label">
@@ -122,6 +132,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 7</h3>
                 <label for="item7" class="control-label">
@@ -138,6 +149,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 8</h3>
                 <label for="item8" class="control-label">
@@ -154,6 +166,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 9</h3>
                 <label for="item9" class="control-label">
@@ -170,6 +183,7 @@
                     </select>
                 </div>
             </section>
+            
             <section class="form-group">
                 <h3>Question 10</h3>
                 <label for="item10" class="control-label">
@@ -195,8 +209,11 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-                    <div class="modal-body text-center">
+                    <div class="modal-body">
+                        <h2 id="match-name"></h2>
+                        <img id="match-img" src="" alt="">
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
@@ -220,6 +237,7 @@
 
             event.preventDefault();
 
+
             const matchStatus = $('.modal-title');
             const modalBody = $('.modal-body');
 
@@ -237,6 +255,25 @@
             const question10 = parseInt($('#question-10').val());
 
             const userData = {
+=======
+            var matchStatus = $('.modal-title');
+            var modalBody = $('.modal-body');
+
+            var name = $('#name').val().trim();
+            var photo = $('#photo').val();
+            var question1 = $('#question-1').val();
+            var question2 = $('#question-2').val();
+            var question3 = $('#question-3').val();
+            var question4 = $('#question-4').val();
+            var question5 = $('#question-5').val();
+            var question6 = $('#question-6').val();
+            var question7 = $('#question-7').val();
+            var question8 = $('#question-8').val();
+            var question9 = $('#question-9').val();
+            var question10 = $('#question-10').val();
+
+            var userData = {
+
                 name: name,
                 photo: photo,
                 scores: [
@@ -254,11 +291,12 @@
             };
 
             if (
-                (name !== '') && (photo !== '') && (!isNaN(question1)) &&
+                (name !== '') && (!isNaN(question1)) &&
                 (!isNaN(question2)) && (!isNaN(question3)) && (!isNaN(question4)) &&
                 (!isNaN(question5)) && (!isNaN(question6)) && (!isNaN(question7)) &&
                 (!isNaN(question8)) && (!isNaN(question9)) && (!isNaN(question10))
             ) {
+
 
                 const currentURL = window.location.origin;
 
@@ -284,6 +322,9 @@
             }
         });
         $('#friend-form').reset();
+    </script>
+
+           
     </script>
 
 
