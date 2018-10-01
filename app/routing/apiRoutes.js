@@ -1,27 +1,27 @@
-var friends = require('../data/friends.js');
+const friends = require('../data/friends.js');
 
 
-module.exports = function(app) {
+module.exports = (app) => {
 
     
-    app.get('/api/friends', function(req, res) {
+    app.get('/api/friends', (req, res) => {
         res.json(friends);
     });
 
-    app.post('/api/friends', function(req, res) {
-        var difference = 40;
-        var matchName = '';
-        var matchPhoto = '';
+    app.post('/api/friends', (req, res) => {
+        const difference = 40;
+        const matchName = '';
+        const matchPhoto = '';
 
        
-        friends.forEach(function(friend) {
-            var matchedScoresArray = [];
-            var totalDifference = 40;
+        friends.forEach((friend) => {
+            const matchedScoresArray = [];
+            const totalDifference = 40;
 
             function add(total, num) {
                 return total + num;
             }
-            for (var i = 0; i < friends.scores.length; i++) {
+            for (let i = 0; i < friends.scores.length; i++) {
                 matchedScoresArray.push(Math.abs(parseInt(req.body.scores[i]) - parseInt(friend.scores[i])));
 
             }

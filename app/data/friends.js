@@ -1,5 +1,5 @@
 
-var friends = [
+const friends = [
 {
     "name":"Zuul",
     "photo":"https://gifimage.net/wp-content/uploads/2018/06/zuul-ghostbusters-gif-5.gif",
@@ -50,4 +50,4 @@ var friends = [
       }
 ]
   
-module.exports = "friends";
+module.exports = friends;
