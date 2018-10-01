@@ -1,23 +1,13 @@
-var friends = require('../data/friends');
 
 
-module.exports = function(app) {
+module.exports = (app) => {
 
     
-    app.get('/api/friends', function(req, res) {
+    app.get('/api/friends', (req, res) => {
         res.json(friends);
     });
 
-    app.post('/api/friends', function(req, res) {
 
-        var userMatch = {
-            name: "",
-            photo: "",
-            difference: 40
-        };
-
-        var userData = req.body;
-        var userScore = userData.scores;
 
         var totalDifference;
 

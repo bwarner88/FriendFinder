@@ -237,6 +237,25 @@
 
             event.preventDefault();
 
+
+            const matchStatus = $('.modal-title');
+            const modalBody = $('.modal-body');
+
+            const name = $('#name').val().trim();
+            const photo = $('#photo').val();
+            const question1 = parseInt($('#question-1').val());
+            const question2 = parseInt($('#question-2').val());
+            const question3 = parseInt($('#question-3').val());
+            const question4 = parseInt($('#question-4').val());
+            const question5 = parseInt($('#question-5').val());
+            const question6 = parseInt($('#question-6').val());
+            const question7 = parseInt($('#question-7').val());
+            const question8 = parseInt($('#question-8').val());
+            const question9 = parseInt($('#question-9').val());
+            const question10 = parseInt($('#question-10').val());
+
+            const userData = {
+=======
             var matchStatus = $('.modal-title');
             var modalBody = $('.modal-body');
 
@@ -254,6 +273,7 @@
             var question10 = $('#question-10').val();
 
             var userData = {
+
                 name: name,
                 photo: photo,
                 scores: [
@@ -277,24 +297,36 @@
                 (!isNaN(question8)) && (!isNaN(question9)) && (!isNaN(question10))
             ) {
 
-                // var currentURL = window.location.origin;
 
-                $.post("/api/friends", userData, function (data) {
+                const currentURL = window.location.origin;
 
-                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                    $("#match-name").text(data.name);
-                    $("#match-img").attr("src", data.photo);
+                $.post(currentURL + "/api/friends", userData, (data) => {
 
-                    // Show the modal with the best match
-                    $(".modal").show();
+                    if (data.name !== undefined) {
+                        matchStatus.html('Your match is:');
+                        modalBody.html(data.name + '!</p><img src="' + data.photo + '" height="200">');
+                    } else {
 
+                        matchStatus.html('Not enough data!');
+                        modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+                    }
+
+                    $('.modal').modal('toggle');
                 });
             } else {
-                alert("Please fill out all fields before submitting!");
+
+                matchStatus.html('Error...');
+                modalBody.html('Please answer all questions on the form.');
+
+                $('.modal').modal('toggle');
             }
         });
-
+        $('#friend-form').reset();
     </script>
+
+           
+    </script>
+
 
 </body>
 
